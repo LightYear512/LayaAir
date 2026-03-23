@@ -19,7 +19,7 @@ export class WxVideoTexture extends VideoTexture {
         this.decoder = PAL.g.createVideoDecoder({
             type: "wemedia" // 3.0.0以上基础库支持传入type参数
         });
-        this.decoder.on(<any>"frame", (res) => {
+        this.decoder.on(<any>"frame", (res: any) => {
             this._currentTime = res.pts / 1000; // 当前播放的进度
             if (this._waitFirstFrame) {
                 this._waitFirstFrame = false;
@@ -73,11 +73,11 @@ export class WxVideoTexture extends VideoTexture {
         if (Browser.isIOSHighPerformanceModePlus)
             this._startOption.videoDataType = 2;
 
-        this.decoder.start(this._startOption).then(res => {
+        this.decoder.start(this._startOption).then((res: any) => {
             this.setLoaded(res.width, res.height, true);
             if (!this._playing)
                 this._waitFirstFrame = true;
-        }).catch(err => {
+        }).catch((err: any) => {
             console.warn("MgVideoTexture: " + err.message);
         });
     }
